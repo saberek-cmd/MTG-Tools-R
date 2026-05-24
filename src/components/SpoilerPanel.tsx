@@ -12,16 +12,18 @@ export function SpoilerPanel({ setCode }: { setCode?: string }) {
   useEffect(() => {
     if (!setCode) return;
 
-    async function load() {
-      setLoading(true);
+const code = setCode;
 
-      try {
-        const data = await fetchSetCards(setCode);
-        setCards(data);
-      } finally {
-        setLoading(false);
-      }
-    }
+async function load() {
+  setLoading(true);
+
+  try {
+    const data = await fetchSetCards(code);
+    setCards(data);
+  } finally {
+    setLoading(false);
+  }
+}
 
     load();
   }, [setCode]);
